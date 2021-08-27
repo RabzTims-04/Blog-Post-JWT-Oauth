@@ -8,7 +8,7 @@ const googleStrategy = new GoogleStrategy({
     clientSecret: process.env.GOOGLE_CLIENT_SECRET,
     callbackURL: "http://localhost:3002/authors/googleRedirect"
 },
-async(accessToken, profile, passportNext) => {
+async(accessToken, refreshToken, profile, passportNext) => {
     try {
         console.log(profile);
         const author = await AuthorModel.findOne({googleId: profile.id})
@@ -33,8 +33,8 @@ async(accessToken, profile, passportNext) => {
     }
 })
 
-passport.serializeUser(function (author, passportNext) {
-    passportNext(null, author)
+passport.serializeUser(function (user, passportNext) {
+    passportNext(null, user)
 })
 
 export default googleStrategy

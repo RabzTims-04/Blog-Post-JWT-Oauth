@@ -48,7 +48,8 @@ authorsRouter.get("/googleLogin", passport.authenticate("google", {
   /* *******************login author*************************** */
 authorsRouter.get("/googleRedirect", passport.authenticate("google"), async (req, res, next) => {
     try {
-        res.redirect(`http://localhost:3000?accessToken=${req.author.token.accessToken}`)
+        console.log(req.user);
+        res.redirect(`http://localhost:3000?accessToken=${req.user.token}`)
     } catch (error) {
       console.log(error);
       next(error)

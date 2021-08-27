@@ -27,11 +27,7 @@ const AuthorSchema = new Schema(
         },
         password:{
             type:String,
-            required:true,
-            description: "password is required",
-            index: {
-                unique: true,
-            }
+            description: "password is required"
         },
         googleId:{
             type:String,
@@ -45,7 +41,6 @@ const AuthorSchema = new Schema(
         },
         role:{
             type: String,
-            required: true,
             enum:["Admin", "User"],
             default:"User"
         }
